@@ -8,6 +8,7 @@
 #include <iostream>
 #include "DBSqlite.h"
 #include "SQLRequest.h"
+#include "DataSource.h"
 
 
 
@@ -132,6 +133,15 @@ int main()
 	int  rc;
 	try
 	{
+		auto pDS = DataSource::instance();
+
+		if (pDS->needCreate()) {
+			pDS->createDB();
+		}
+
+		if (pDS->needUpdate()) {
+			pDS->updateDB();
+		}
 
 	}
 	catch (const std::exception& exc)

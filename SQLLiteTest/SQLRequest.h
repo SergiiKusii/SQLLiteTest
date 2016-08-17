@@ -20,7 +20,8 @@ public:
 	enum eRecusetId
 	{
 		createTableDbVersion = 0,
-		checkTableDbVersion
+		checkTableDbVersion,
+		getDbVersion
 	};
 
 	static SQLRequest* instance() {

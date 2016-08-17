@@ -34,4 +34,5 @@ SQLRequest::SQLRequest()
 		);\
 		INSERT INTO T_DBVERS(MAJOR, MINOR, SUBMINOR, BUILD) VALUES(1, 0, 0, 1)";
 	m_requests[checkTableDbVersion] = "select count(type) from sqlite_master where type='table' and name='T_DBVERS';";
+	m_requests[getDbVersion] = "SELECT MAJOR, MINOR, SUBMINOR, BUILD FROM T_DBVERS";
 }

@@ -4,6 +4,13 @@
 
 #include "SQLRequest.h"
 
+enum eVersion{
+	MAJOR = 1,
+	MINOR = 0,
+	SUBMINOR = 0,
+	BUILD = 1
+};
+
 class DataSource
 {
 public:
@@ -34,7 +41,14 @@ public:
 	};
 
 	bool needUpdate() {
+		Value::Table table;
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+		m_pDB->exec(SQLRequest::instance()->get(SQLRequest::getDbVersion), table);
 
+		return !(table[0][0].getInt() == MAJOR && table[0][1].getInt() == MINOR && table[0][2].getInt() == SUBMINOR && table[0][3].getInt() == BUILD);
 	};
 
 	virtual ~DataSource();
