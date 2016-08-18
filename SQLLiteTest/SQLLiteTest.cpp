@@ -134,19 +134,36 @@ int main()
 	try
 	{
 		auto pDS = DataSource::instance();
+		auto pDB = pDS->getDB();
+
+		pDB->connect("FC.db");
 
 		if (pDS->needCreate()) {
+			std::cout << "createDB" << std::endl;
 			pDS->createDB();
 		}
 
 		if (pDS->needUpdate()) {
+			std::cout << "updateDB" << std::endl;
 			pDS->updateDB();
 		}
+
+		Value::Table table;
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+		table.addColum(Value::eType::Int);
+
+		pDB->exec(SQLRequest::instance()->get(SQLRequest::getDbVersion), table);
+
+		std::cout << table[0][0].getInt() << " MAJOR " << table[0][1].getInt() << " MINOR " << table[0][2].getInt() << " SUBMINOR " << table[0][3].getInt() << " BUILD " << std::endl;
 
 	}
 	catch (const std::exception& exc)
 	{
-		std::cout << exc.what() << std::endl;
+		std::string sErr = exc.what();
+
+		std::cout << sErr << std::endl;
 	}
 	std::cin >> rc;
 

@@ -17,15 +17,14 @@ void DBSqlite::connect(const std::string& connStr)
 	int iRes = sqlite3_open(connStr.c_str(), &m_db);
 	
 	if (iRes != SQLITE_OK) {
-		std::string sError;
-		sError = "Can't open database: \n" 
+		m_sError = "Can't open database: \n" 
 			+ std::string(sqlite3_errmsg(m_db)) 
 			+ "\n Responce code: \n"
 			+ std::to_string(iRes);
 
 		m_db = nullptr;
 
-		throw std::exception(sError.c_str(), static_cast<int>(eErrors::connect));
+		throw std::exception(m_sError.c_str(), static_cast<int>(eErrors::connect));
 	}
 }
 
@@ -36,6 +35,7 @@ bool DBSqlite::isConnected()
 
 bool DBSqlite::avaliable()
 {
+	//TODO not complited
 	return false;
 }
 
@@ -77,11 +77,11 @@ void DBSqlite::exec(const std::string& sqlReq, Value::Table& vOut)
 	int iRes = sqlite3_exec(m_db, sqlReq.c_str(), fillOutTable, &vOut, &pszErrMsg);
 
 	if (iRes != SQLITE_OK) {
-		std::string sError = "SQL error: " + std::string(pszErrMsg) 
+		m_sError = "SQL error: " + std::string(pszErrMsg) 
 			+ "\n Response code: " + std::to_string(iRes);
 		sqlite3_free(pszErrMsg);
 
-		throw std::exception(sError.c_str(), static_cast<int>(eErrors::execute));
+	throw std::exception(m_sError.c_str(), static_cast<int>(eErrors::execute));
 	}
 }
 

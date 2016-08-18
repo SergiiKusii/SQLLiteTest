@@ -45,6 +45,8 @@ public:
 
 	virtual ~SQLRequest() {};
 
+	std::string m_sError;
+
 private:
 	SQLRequest();
 	std::map<eRecusetId, std::string> m_requests;

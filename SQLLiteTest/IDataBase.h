@@ -32,4 +32,6 @@ public:
 	virtual void close() = 0;
 
 	virtual ~IDataBase() {};
+
+	std::string m_sError;
 };
