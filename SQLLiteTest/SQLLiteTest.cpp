@@ -1,13 +1,12 @@
 // SQLLiteTest.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "sqlite\sqlite3.h"
+#include "Database\sqlite\sqlite3.h"
 #include <iostream>
-#include "DBSqlite.h"
-#include "SQLRequest.h"
+#include "Database\DBSqlite.h"
+#include "Database\SQLRequest.h"
 #include "DataSource.h"
 
 

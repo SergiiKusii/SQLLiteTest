@@ -3,3 +3,4 @@
 /ipch/
 *.VC.db
 *.VC.VC.opendb
+/x64/

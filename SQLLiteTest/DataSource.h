@@ -1,8 +1,8 @@
 #pragma once
-#include "IDataBase.h"
+#include "Database\IDataBase.h"
 #include <memory>
 
-#include "SQLRequest.h"
+#include "Database\SQLRequest.h"
 
 enum eVersion{
 	MAJOR = 1,
@@ -36,7 +36,7 @@ public:
 	bool needCreate() {
 		Value::Table table;
 		table.addColum(Value::eType::Int);
-		m_pDB->exec(SQLRequest::instance()->get(SQLRequest::checkTableDbVersion), table);
+		m_pDB->exec(SQLRequest::instance()->get(SQLRequest::checkTable), table);
 		return table[0][0].getInt() == 0;
 	};
 

@@ -30,55 +30,46 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite\sqlite3.h">
-      <Filter>Header Files\DataBase\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite\sqlite3ext.h">
-      <Filter>Header Files\DataBase\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="IDataBase.h">
-      <Filter>Header Files\DataBase</Filter>
-    </ClInclude>
-    <ClInclude Include="DBSqlite.h">
-      <Filter>Header Files\DataBase</Filter>
-    </ClInclude>
-    <ClInclude Include="SQLRequest.h">
-      <Filter>Header Files\DataBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Value.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Database\sqlite\sqlite3.h">
+      <Filter>Header Files\DataBase\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\sqlite\sqlite3ext.h">
+      <Filter>Header Files\DataBase\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\DBSqlite.h">
+      <Filter>Header Files\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\IDataBase.h">
+      <Filter>Header Files\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SQLRequest.h">
+      <Filter>Header Files\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\Value.h">
+      <Filter>Header Files\DataBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SQLLiteTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sqlite\sqlite3.c">
-      <Filter>Source Files\DataBase\sqlite</Filter>
-    </ClCompile>
-    <ClCompile Include="DBSqlite.cpp">
-      <Filter>Source Files\DataBase</Filter>
-    </ClCompile>
-    <ClCompile Include="SQLRequest.cpp">
-      <Filter>Source Files\DataBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Value.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DataSource.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\DBSqlite.cpp">
+      <Filter>Source Files\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\sqlite\sqlite3.c">
+      <Filter>Source Files\DataBase\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\SQLRequest.cpp">
+      <Filter>Source Files\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\Value.cpp">
+      <Filter>Source Files\DataBase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

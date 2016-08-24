@@ -1,6 +1,5 @@
-#include "stdafx.h"
 #include "DataSource.h"
-#include "DBSqlite.h"
+#include "Database\DBSqlite.h"
 
 DataSource::DataSource()
 {
