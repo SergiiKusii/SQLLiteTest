@@ -5,6 +5,7 @@
 #include <memory>
 #include "Value.h" 
 
+//singelton
 class SQLRequest
 {
 public:

@@ -145,6 +145,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attribute.h" />
+    <ClInclude Include="Catalog.h" />
     <ClInclude Include="DataSource.h" />
     <ClInclude Include="Database\DBSqlite.h" />
     <ClInclude Include="Database\IDataBase.h" />
@@ -152,14 +154,24 @@
     <ClInclude Include="Database\SQLRequest.h" />
     <ClInclude Include="Database\sqlite\sqlite3.h" />
     <ClInclude Include="Database\sqlite\sqlite3ext.h" />
+    <ClInclude Include="Designer.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="TabularSection.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Attribute.cpp" />
+    <ClCompile Include="Catalog.cpp" />
     <ClCompile Include="DataSource.cpp" />
     <ClCompile Include="Database\DBSqlite.cpp" />
     <ClCompile Include="Database\sqlite\sqlite3.c" />
+    <ClCompile Include="Designer.cpp" />
     <ClCompile Include="SQLLiteTest.cpp" />
     <ClCompile Include="Database\SQLRequest.cpp" />
     <ClCompile Include="Database\Value.cpp" />
+    <ClCompile Include="TabularSection.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
