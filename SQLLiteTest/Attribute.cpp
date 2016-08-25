@@ -1,11 +1,14 @@
 #include "Attribute.h"
 
-Attribute::Attribute()
+void Attribute::setValue(const Value& val)
 {
-	m_type = Value::eType::Int;
-}
-
-
-Attribute::~Attribute()
-{
+	if (val.hasType(m_value.getType()))
+	{
+		m_value = val;
+	}
+	else
+	{
+		m_sError = "tring to set attribute value with wrong type";
+		throw std::exception()//;
+	}
 }

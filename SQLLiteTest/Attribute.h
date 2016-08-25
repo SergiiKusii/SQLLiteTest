@@ -5,9 +5,13 @@
 class Attribute : public Entity
 {
 public:
-	Attribute();
-	~Attribute();
+	Attribute() {};
+	Attribute(const Value::eType& type) : m_value(Value(type)) {};
+
+	void setValue(const Value& val);
+
+	~Attribute() {};
 private:
-	Value::eType m_type;
+	Value m_value;
 };
 

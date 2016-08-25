@@ -26,6 +26,8 @@ public:
 
 	Value(const eType& type, const std::string& sValue);
 
+	Value(const eType& type) : m_type(type) {};
+
 	Value(const int value) { 
 		m_type = eType::Int;
 		std::get<0>(m_value) = value; 

@@ -3,6 +3,12 @@
 class Entity
 {
 public:
+	enum class eErrors : int {
+		ok = 300,
+		internal,
+		last = 399
+	};
+
 	enum class Type{
 		none,
 		field,
@@ -32,5 +38,7 @@ protected:
 	std::string m_name;
 	std::string m_synonym;
 	Type m_entityType;
+
+	std::string m_sError;
 };
 
