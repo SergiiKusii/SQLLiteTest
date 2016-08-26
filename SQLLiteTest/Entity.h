@@ -6,19 +6,20 @@ public:
 	enum class eErrors : int {
 		ok = 300,
 		internal,
+		wrongAttributeType,
 		last = 399
 	};
 
-	enum class Type{
+	enum class eType{
 		none,
-		field,
-		tablePart,
+		attribute,
+		tabularSection,
 		C_Nomemclature,
 		D_Income
 	};
 
-	Entity():m_entityType(Type::none){};
-	Entity(const std::string& sName, const std::string& sSynonym, const Type& entityType) :
+	Entity():m_entityType(eType::none){};
+	Entity(const std::string& sName, const std::string& sSynonym, const eType& entityType) :
 		m_name(sName),
 		m_synonym(sSynonym),
 		m_entityType(entityType) {};
@@ -29,15 +30,20 @@ public:
 	std::string getSynonym() {
 		return m_synonym;
 	};
-	Type getEntityType() {
+	eType getEntityType() {
 		return m_entityType;
 	};
+
+	bool operator==(const Entity& ent){
+		return m_name.compare(ent.m_name) == 0
+			&& m_entityType == ent.m_entityType;
+	}
 	virtual ~Entity() {};
 
 protected:
 	std::string m_name;
 	std::string m_synonym;
-	Type m_entityType;
+	eType m_entityType;
 
 	std::string m_sError;
 };

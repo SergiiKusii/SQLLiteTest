@@ -41,3 +41,26 @@ Value::Value(const eType& type, const std::string& sValue)
 		break;
 	}
 }
+
+std::string Value::typeName(const eType& type)
+{
+	std::string str;
+
+	switch (type)
+	{
+	case eType::Int:
+		str = "int";
+		break;
+	case eType::Double:
+		str = "double";
+		break;
+	case eType::String:
+		str = "string";
+		break;
+	default:
+		str = "none";
+		break;
+	}
+
+	return str;
+}

@@ -20,6 +20,8 @@ public:
 		String = 2
 	};
 
+	static std::string typeName(const eType& type);
+
 	typedef std::tuple<int, double, std::string> ValueType;
 
 	Value(const eType& type, const ValueType& value) : m_type(type), m_value(value){};
