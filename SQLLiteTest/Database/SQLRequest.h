@@ -9,8 +9,7 @@
 class SQLRequest
 {
 public:
-	enum class eErrors
-	{
+	enum class eErrors : int {
 		ok = 0,
 		internal,
 		requestNotFound,
@@ -31,6 +30,14 @@ public:
 
 		return m_instance.get();
 	}
+	
+	static 	std::string sGet(const eRecusetId& idReq, const Value::Row& inArgs) {
+		return instance()->get(idReq, inArgs);
+	};
+
+	static std::string sGet(const eRecusetId& idReq) {
+		return instance()->get(idReq);
+	};
 
 	std::string operator[](const eRecusetId& idReq)	{
 		auto it = m_requests.find(idReq);
