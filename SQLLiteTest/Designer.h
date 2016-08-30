@@ -35,5 +35,7 @@ public:
 private:
 	std::vector<Catalog> m_vCatalogs;
 	Designer();
+	static void createCatalog(const Catalog& cat);
+	static std::string getAtttributeTxt(const Attribute& attr);
 };
 

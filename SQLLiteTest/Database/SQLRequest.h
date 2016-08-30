@@ -19,7 +19,9 @@ public:
 
 	enum eRecusetId
 	{
-		createTableDbVersion = 0,
+		createTable = 0,
+		createAttribute,
+		createTableDbVersion,
 		checkTable,
 		dropTable,
 		getDbVersion

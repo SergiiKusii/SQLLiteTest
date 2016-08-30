@@ -42,7 +42,7 @@ Value::Value(const eType& type, const std::string& sValue)
 	}
 }
 
-std::string Value::typeName(const eType& type)
+std::string Value::typeName(const eType& type, const size_t stringSize)
 {
 	std::string str;
 
@@ -55,7 +55,7 @@ std::string Value::typeName(const eType& type)
 		str = "double";
 		break;
 	case eType::String:
-		str = "string";
+		str = "varchar("+ std::string(stringSize == 0 ? "max" : std::to_string(stringSize)) +")";
 		break;
 	default:
 		str = "none";

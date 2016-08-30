@@ -137,15 +137,15 @@ int main()
 
 		pDB->connect("FC.db");
 
-		if (pDS->needCreate()) {
-			std::cout << "createDB" << std::endl;
-			pDS->createDB();
-		}
+		//if (pDS->needCreate()) {
+		//	std::cout << "createDB" << std::endl;
+		//	pDS->createDB();
+		//}
 
-		if (pDS->needUpdate()) {
-			std::cout << "updateDB" << std::endl;
-			pDS->updateDB();
-		}
+		//if (pDS->needUpdate()) {
+		//	std::cout << "updateDB" << std::endl;
+		//	pDS->updateDB();
+		//}
 
 		Value::Table table;
 		table.addColum(Value::eType::Int);

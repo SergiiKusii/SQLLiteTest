@@ -8,18 +8,36 @@
 Designer::Designer()
 {
 	auto cat = Catalog("T_NOMENCLATURE", "Nomenclature", Entity::eType::C_Nomemclature);
-		cat.addAttribute(Attribute("NAME", "Name", Value::eType::String));
-		cat.addAttribute(Attribute("Code", "Code", Value::eType::String));
+		cat.addAttribute(Attribute("NAME", "Name", Value::eType::String, 100));
+		cat.addAttribute(Attribute("CODE", "Code", Value::eType::String, 11));
 	m_vCatalogs.push_back(cat);
 }
 
-void Designer::createDB() {
-	DataSource::sGetDB()->exec(SQLRequest::sGet(SQLRequest::createTableDbVersion));
+std::string Designer::getAtttributeTxt(const Attribute& attr)
+{
+	return SQLRequest::sGet(SQLRequest::createAttribute, Value::Row({ Value(attr.getName()),  Value(attr.getSqlType()) }));
+}
 
+void Designer::createCatalog(const Catalog& cat) {
+	std::string sql;
+	//create attribute
+	auto& attributes = cat.getAttributes();
+	for (auto& attr : attributes) {
+		sql += ", " + getAtttributeTxt(attr);
+	}
+	//create table, idx and attribute
+	sql = SQLRequest::sGet(SQLRequest::createTable, Value::Row({ Value(cat.getName()),  sql }));
+
+	DataSource::sGetDB()->exec(sql);
+}
+
+void Designer::createDB() {
 	//create T_DB_VERSION maybe T_MAIN {ID (1 - VERSION), Value (string), Type (1 - int, 2 - string)}
 
 	//create catalogs
-
+	for (auto& cat : m_vCatalogs) {
+		createCatalog(cat);
+	}
 	//create documents
 
 	//create registers
@@ -36,7 +54,7 @@ bool Designer::needCreate() {
 	table.addColum(Value::eType::Int);
 	Value::Row row;
 	row.push_back(Value(T_DBVERSION));
-	DataSource::instance()->getDB()->exec(SQLRequest::instance()->get(SQLRequest::checkTable, row), table);
+	DataSource::instance()->getDB()->exec(SQLRequest::sGet(SQLRequest::checkTable, row), table);
 	return table[0][0].getInt() == 0;
 };
 

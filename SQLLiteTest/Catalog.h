@@ -6,7 +6,7 @@
 #include <string>
 #include <memory>
 
-class Catalog : public Entity
+class Catalog : public Entity , public AttributesHolder, public TabularSectionsHolder
 {
 public:
 	Catalog();
@@ -14,23 +14,7 @@ public:
 		Entity(sName, sSynonym, entityType) {};
 	~Catalog();
 
-	void addAttribute(const Attribute& attr) {
-		//TODO check  There is  such an attribute
-		m_vAttributes.push_back(attr);
-	};
-
-	void addTabularSection(const TabularSection& tableSec) {
-		//TODO check  There is  such an TabularSection
-		m_vTabularSections.push_back(tableSec);
-	};
-
-
-
 private:
-
-	std::vector<Attribute> m_vAttributes;
-	std::vector<TabularSection> m_vTabularSections;
-
 	std::shared_ptr<Catalog> m_pParent;
 	std::shared_ptr<Catalog> m_pOwner;
 };

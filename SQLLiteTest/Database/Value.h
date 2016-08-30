@@ -20,7 +20,7 @@ public:
 		String = 2
 	};
 
-	static std::string typeName(const eType& type);
+	static std::string typeName(const eType& type, const size_t stringSize = 0);
 
 	typedef std::tuple<int, double, std::string> ValueType;
 
@@ -28,7 +28,7 @@ public:
 
 	Value(const eType& type, const std::string& sValue);
 
-	Value(const eType& type) : m_type(type) {};
+	Value(const eType& type, const size_t stringSize = 0) : m_type(type), m_stringSize(stringSize) {};
 
 	Value(const int value) { 
 		m_type = eType::Int;
@@ -69,10 +69,15 @@ public:
 		return static_cast<int>(type) == static_cast<int>(m_type);
 	};
 
+	std::string typeName() const {
+		return Value::typeName(m_type, m_stringSize);
+	}
+
 	virtual ~Value() {};
 
 private:
 	ValueType m_value;
+	size_t m_stringSize; //0 if max
 	eType m_type;
 
 public:
@@ -121,7 +126,7 @@ public:
 		std::vector<Row> m_data;
 		std::vector<Colum> m_colums;
 
-		void checkRow(const Row& row) {
+		void checkRow(const Row& row) const{
 			bool isError = false;
 
 			if (row.size() != m_colums.size())

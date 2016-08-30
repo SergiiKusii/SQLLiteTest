@@ -24,13 +24,13 @@ public:
 		m_synonym(sSynonym),
 		m_entityType(entityType) {};
 
-	std::string getName() {
+	std::string getName() const{
 		return m_name;
 	};
-	std::string getSynonym() {
+	std::string getSynonym() const{
 		return m_synonym;
 	};
-	eType getEntityType() {
+	eType getEntityType() const{
 		return m_entityType;
 	};
 

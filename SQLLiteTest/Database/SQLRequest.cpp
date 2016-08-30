@@ -23,6 +23,12 @@ std::string SQLRequest::get(const eRecusetId& idReq, const Value::Row& inArgs)
 
 SQLRequest::SQLRequest()
 {
+	m_requests[createTable] =
+		"CREATE TABLE [?](\
+		[ID][integer] PRIMARY KEY ASC AUTOINCREMENT\
+		? ); ";
+	m_requests[createAttribute] = "[?][?] NULL";
+
 	m_requests[createTableDbVersion] =
 		"CREATE TABLE [T_DBVERS](\
 		[ID][integer] PRIMARY KEY ASC AUTOINCREMENT,\
