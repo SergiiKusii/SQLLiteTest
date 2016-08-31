@@ -8,7 +8,7 @@
 #include "Database\DBSqlite.h"
 #include "Database\SQLRequest.h"
 #include "DataSource.h"
-
+#include "Designer.h"
 
 
 static int callback(void *data, int argc, char **argv, char **azColName) {
@@ -137,6 +137,8 @@ int main()
 
 		pDB->connect("FC.db");
 
+		Designer::instance()->createDB();
+
 		//if (pDS->needCreate()) {
 		//	std::cout << "createDB" << std::endl;
 		//	pDS->createDB();
@@ -147,15 +149,15 @@ int main()
 		//	pDS->updateDB();
 		//}
 
-		Value::Table table;
-		table.addColum(Value::eType::Int);
-		table.addColum(Value::eType::Int);
-		table.addColum(Value::eType::Int);
-		table.addColum(Value::eType::Int);
+		//Value::Table table;
+		//table.addColum(Value::eType::Int);
+		//table.addColum(Value::eType::Int);
+		//table.addColum(Value::eType::Int);
+		//table.addColum(Value::eType::Int);
 
-		pDB->exec(SQLRequest::instance()->get(SQLRequest::getDbVersion), table);
+		//pDB->exec(SQLRequest::instance()->get(SQLRequest::getDbVersion), table);
 
-		std::cout << table[0][0].getInt() << " MAJOR " << table[0][1].getInt() << " MINOR " << table[0][2].getInt() << " SUBMINOR " << table[0][3].getInt() << " BUILD " << std::endl;
+		//std::cout << table[0][0].getInt() << " MAJOR " << table[0][1].getInt() << " MINOR " << table[0][2].getInt() << " SUBMINOR " << table[0][3].getInt() << " BUILD " << std::endl;
 
 	}
 	catch (const std::exception& exc)

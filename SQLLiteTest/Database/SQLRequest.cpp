@@ -15,7 +15,8 @@ std::string SQLRequest::get(const eRecusetId& idReq, const Value::Row& inArgs)
 		if (searchIdx == std::string::npos)
 			throw std::exception("Incorect count of input args", static_cast<int>(eErrors::makeRequest));
 
-		sqlReq.replace(searchIdx, val.size(), val);
+		sqlReq.erase(searchIdx, sizeof(IN_ARG) - 1);
+		sqlReq.insert(searchIdx, val);
 	}
 
 	return sqlReq;
