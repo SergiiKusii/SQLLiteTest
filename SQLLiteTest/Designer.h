@@ -34,8 +34,10 @@ public:
 
 private:
 	std::vector<Catalog> m_vCatalogs;
+	Catalog m_config;
 	Designer();
 	static void createCatalog(const Catalog& cat);
 	static std::string getAtttributeTxt(const Attribute& attr);
+	static void createTabularSection(const TabularSection& tsec);
 };
 

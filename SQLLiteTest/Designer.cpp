@@ -3,10 +3,12 @@
 #include "Database\SQLRequest.h"
 #include "DataSource.h"
 
-#define T_DBVERSION "T_DB_VERSION"
+#define T_CONFIG "T_CONFIG"
 
 Designer::Designer()
 {
+	m_config = Catalog(T_CONFIG, "Config", Entity::eType::C_Config);
+		m_config.addAttribute(Attribute("Value", "Value", Value::eType::String, 256));
 	auto cat = Catalog("T_NOMENCLATURE", "Nomenclature", Entity::eType::C_Nomemclature);
 		cat.addAttribute(Attribute("NAME", "Name", Value::eType::String, 100));
 		cat.addAttribute(Attribute("CODE", "Code", Value::eType::String, 11));
@@ -18,6 +20,11 @@ std::string Designer::getAtttributeTxt(const Attribute& attr)
 	return SQLRequest::sGet(SQLRequest::createAttribute, Value::Row({ Value(attr.getName()),  Value(attr.getSqlType()) }));
 }
 
+void Designer::createTabularSection(const TabularSection& tsec)
+{
+
+}
+
 void Designer::createCatalog(const Catalog& cat) {
 	std::string sql;
 	//create attribute
@@ -27,12 +34,18 @@ void Designer::createCatalog(const Catalog& cat) {
 	}
 	//create table, idx and attribute
 	sql = SQLRequest::sGet(SQLRequest::createTable, Value::Row({ Value(cat.getName()),  sql }));
-
 	DataSource::sGetDB()->exec(sql);
+
+	//create tabular section
+	auto& tsections = cat.getTabularSections();
+	for (auto& tsec : tsections) {
+		createTabularSection(tsec);
+	}
 }
 
 void Designer::createDB() {
 	//create T_DB_VERSION maybe T_MAIN {ID (1 - VERSION), Value (string), Type (1 - int, 2 - string)}
+	createCatalog(m_config);
 
 	//create catalogs
 	for (auto& cat : m_vCatalogs) {
@@ -53,7 +66,7 @@ bool Designer::needCreate() {
 	Value::Table table;
 	table.addColum(Value::eType::Int);
 	Value::Row row;
-	row.push_back(Value(T_DBVERSION));
+	row.push_back(Value(T_CONFIG));
 	DataSource::instance()->getDB()->exec(SQLRequest::sGet(SQLRequest::checkTable, row), table);
 	return table[0][0].getInt() == 0;
 };

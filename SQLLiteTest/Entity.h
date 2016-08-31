@@ -14,6 +14,7 @@ public:
 		none,
 		attribute,
 		tabularSection,
+		C_Config,
 		C_Nomemclature,
 		D_Income
 	};
