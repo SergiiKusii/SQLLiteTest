@@ -8,10 +8,12 @@
 Designer::Designer()
 {
 	m_config = Catalog(T_CONFIG, "Config", Entity::eType::C_Config);
-		m_config.addAttribute(Attribute("Value", "Value", Value::eType::String, 256));
+		m_config.addAttribute(Attribute("Value", "Value", Attribute::eType::String, 256));
 	auto cat = Catalog("T_NOMENCLATURE", "Nomenclature", Entity::eType::C_Nomemclature);
-		cat.addAttribute(Attribute("NAME", "Name", Value::eType::String, 100));
-		cat.addAttribute(Attribute("CODE", "Code", Value::eType::String, 11));
+		cat.addAttribute(Attribute("NAME", "Name", Attribute::eType::String, 100));
+		cat.addAttribute(Attribute("CODE", "Code", Attribute::eType::String, 11));
+		auto tabSec = TabularSection("CODE", "Code", cat);
+		tabSec.addAttribute(Attribute("Nomenclature", "Nomenclature", Attribute::eType::Catalog, Entity::eType::C_Nomemclature));
 	m_vCatalogs.push_back(cat);
 }
 

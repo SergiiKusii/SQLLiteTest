@@ -11,7 +11,7 @@ public:
 	};
 
 	enum class eType{
-		none,
+		none = 0,
 		attribute,
 		tabularSection,
 		C_Config,

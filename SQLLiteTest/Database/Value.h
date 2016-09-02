@@ -24,6 +24,8 @@ public:
 
 	typedef std::tuple<int, double, std::string> ValueType;
 
+	Value() : m_type(eType::Int) {};
+
 	Value(const eType& type, const ValueType& value) : m_type(type), m_value(value){};
 
 	Value(const eType& type, const std::string& sValue);
@@ -41,6 +43,10 @@ public:
 	Value(const std::string& value) {
 		m_type = eType::String;
 		std::get<2>(m_value) = value;
+	};
+
+	void setNewType(const eType& type) {
+		m_type = type;
 	};
 
 	eType getType()	const{

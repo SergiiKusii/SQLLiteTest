@@ -3,20 +3,24 @@
 #include "Attribute.h"
 #include <vector>
 
+class TabularSectionsHolder;
+
 class TabularSection : public Entity, public AttributesHolder
 {
 public:
-	TabularSection(const std::string& sName, const std::string& sSynonym, const Entity& parent) :
+	TabularSection(const std::string& sName, const std::string& sSynonym, TabularSectionsHolder& parent) :
 		Entity(sName, sSynonym, eType::tabularSection),
-		m_parent(parent) {};
+		m_parent(parent) {
+		m_parent.addTabularSection(*this);
+	};
 
-	const Entity& getParent() const{
+	const TabularSectionsHolder& getParent() const{
 		return m_parent;
 	}
 
 	~TabularSection();
 private:
-	const Entity& m_parent;
+	TabularSectionsHolder& m_parent;
 };
 
 class TabularSectionsHolder
@@ -24,13 +28,13 @@ class TabularSectionsHolder
 public:
 	TabularSectionsHolder() {};
 	virtual ~TabularSectionsHolder() {};
-	
+
 	void addTabularSection(const TabularSection& tableSec) {
 		//TODO check  There is  such an TabularSection
 		m_vTabularSections.push_back(tableSec);
 	};
 
-	const std::vector<TabularSection>& getTabularSections() const{
+	const std::vector<TabularSection>& getTabularSections() const {
 		return m_vTabularSections;
 	};
 
