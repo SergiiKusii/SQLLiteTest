@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<doc type = "Income" date = "" <!--current by default-->>
+		<placing></placing> <!--Гаманець by default-->
+		<Currency></Currency> <!--uah by default-->
+		<TypeEvent></TypeEvent> <!--parent Event by default-->
+		<Event></Event>
+		<Type></Type> <!--empty by default-->
+		<Sum></Sum>
+		<Comment></Comment>	
+	</doc>
+	<doc type = "Moving" date = "" <!--current by default-->>
+		<from></from> 
+		<to></to>
+		<Currency></Currency> <!--uah by default-->
+		<Sum></Sum>
+		<Comment></Comment>	
+	</doc>
+	<doc type = "Waste" date = "" <!--current by default-->>
+		<placing></placing> <!--Гаманець by default-->
+		<Currency></Currency> <!--uah by default-->
+		<Nom Sum = "10" NomGroup = "" <!--current by default--> Comment = "" ></Nom>	
+		<Comment></Comment>		
+	</doc>
+</root>
